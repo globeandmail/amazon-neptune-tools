@@ -1,0 +1,9 @@
+FROM maven:3.6.1-jdk-8
+
+WORKDIR /opt/
+
+COPY ./neptune-gremlin-client/ ./app
+
+RUN cd ./app && mvn clean package install -DskipTests && cd ..
+
+CMD ["java","-jar","./app/gremlin-client/target/gremlin-client-1.0-SNAPSHOT.war"]
